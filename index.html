@@ -1,0 +1,40 @@
+<head>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <div class="headerStyle">
+        <h1>
+            Library
+        </h1>
+    </div>
+
+    <div class="addBookModal" id="addBookModal">
+        <span class="closeModal" id="closeModal" ">&times;</span>
+        <div class="modalContent">
+            <form name="bookForm">
+                Book title: 
+                <input type="text" name="title"> <br>
+                Author name: 
+                <input type="text" name="author"><br>
+                Number of Pages: 
+                <input type="number" name="page"><br>
+                Have you read this book? 
+                <input type="checkbox" name="read">
+            </form>
+            
+
+        </div>
+        <div class = "modalFooter">
+            <button class="addBookToLibrary" id="addBookToLibrary">Add book to library! </button>
+        </div>
+    </div>
+
+    <div class="libraryContainer" id="library">
+        
+    </div>
+    
+
+
+    <script src="script.js">   </script>
+</body>
