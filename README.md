@@ -3,8 +3,8 @@ HTML, CSS and Javascript webapp that allows users to store the information of bo
 
 Project made in line with Odin Project specifications. Webapp uses the localstorage api to maintain states across access.
 
-Markup :Things learned and practiced:
-  *Using flex-grid to create a auto increasing display page
+Things learned and practiced:
+Markup : *Using flex-grid to create a auto increasing display page
   *CSS psuedo classes for hover and active effects
   *CSS transition effects
   *Use local storage to store and parse array data
