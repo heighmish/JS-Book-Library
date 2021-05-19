@@ -5,6 +5,14 @@ const closeModal = document.getElementById("closeModal");
 const addToLibraryButton = document.getElementById("addBookToLibrary");
 
 
+window.addEventListener("load", () => {
+    myLibrary = JSON.parse(localStorage.getItem("mainKey"));
+    if (myLibrary === null) {
+        myLibrary = [];
+    }
+    displayLibrary();
+})
+
 function book(title, author, pageCount, read)  {
     this.title = title;
     this.author = author;
@@ -16,13 +24,6 @@ const addBookToLibrary = (title, author, pageCount, read) => {
     const newBook = new book(title, author, pageCount, read);
     myLibrary.push(newBook);
 }
-
-
-
-addBookToLibrary("The Return of the King","J.R.R. Tolkien", "416", "true");
-addBookToLibrary("To Kill a MockingBird","Harper Lee", "281", "true");
-addBookToLibrary("Calculus, One and Several Varaibles","Sallas, Hille, Etgen", "1200", "false");
-addBookToLibrary("Javascript for Dummies"," Emily A. Vander Veer", "368", "true");
 
 
 const displayLibrary = () => {
@@ -65,6 +66,7 @@ const displayLibrary = () => {
 
         deleteButton.addEventListener("click", event => {
             myLibrary.splice(myLibrary.indexOf(book), 1);
+            saveLibrary();
             displayLibrary();
         })
 
@@ -90,7 +92,6 @@ const displayLibrary = () => {
 
 }
 
-
 const addButton = () => {
     //design 
     let addContainer = document.createElement("DIV");
@@ -112,7 +113,6 @@ const addButton = () => {
 closeModal.addEventListener("click", () => {
     addBookModal.style.display = "none";
 })
-displayLibrary();
 
 
 addToLibraryButton.addEventListener("click", () => {
@@ -121,8 +121,24 @@ addToLibraryButton.addEventListener("click", () => {
     let author = data.author.value;
     let pages = data.page.value;
     let read = data.read.checked;
-    addBookToLibrary(title, author, pages, read);
-    addBookModal.style.display = "none";
+    if (title !== "" && author !== "") {
+        addBookToLibrary(title, author, pages, read);
+        addBookModal.style.display = "none";
+    }
     document.forms.bookForm.reset();
+    //local storage 
+    saveLibrary();
     displayLibrary();
 })
+
+//example books
+addBookToLibrary("The Return of the King","J.R.R. Tolkien", "416", "true");
+addBookToLibrary("To Kill a MockingBird","Harper Lee", "281", "true");
+addBookToLibrary("Calculus, One and Several Variables","Sallas, Hille, Etgen", "1200", "false");
+addBookToLibrary("Javascript for Dummies"," Emily A. Vander Veer", "368", "true");
+
+
+
+const saveLibrary = () => {
+    localStorage.setItem("mainKey", JSON.stringify(myLibrary));
+}
